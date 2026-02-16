@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "loft-booking"
+version = "0.1.0"
+description = ""
+authors = ["emmanueluwa <oemmanuel.uwadiae@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.129.0"
+uvicorn = "^0.40.0"
+python-telegram-bot = "^22.6"
+pydantic-settings = "^2.13.0"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^9.0.2"
+httpx = "^0.28.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
