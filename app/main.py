@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.database import engine, Base, get_db
 from fastapi import FastAPI, HTTPException, Depends
 from pydantic import BaseModel, EmailStr
-from datetime import datetime
+from datetime import datetime, timedelta
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, or_, and_
 from app.notifications import send_telegram_notification
@@ -127,10 +127,20 @@ async def create_booking(booking: BookingRequest, db: AsyncSession = Depends(get
         await db.commit()
         await db.refresh(new_booking)
 
+        # remove 15 min buffer inbetween bookings from telegram message
+        service_duration_no_buffer = SERVICE_DURATIONS[
+            booking.service_type
+        ] - timedelta(minutes=15)
+        appointment_end_displayed = (
+            booking.appointment_start + service_duration_no_buffer
+        )
+
         formatted_start = booking.appointment_start.astimezone(LONDON_TZ).strftime(
             "%A, %d %B %Y at %I:%M %p"
         )
-        formatted_end = appointment_end.astimezone(LONDON_TZ).strftime("%I:%M %p")
+        formatted_end = appointment_end_displayed.astimezone(LONDON_TZ).strftime(
+            "%I:%M %p"
+        )
 
         await send_telegram_notification(
             customer_name=booking.customer_name,

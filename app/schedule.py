@@ -21,7 +21,7 @@ WORKING_HOURS: dict[Weekday, tuple[time, time]] = {
     Weekday.MONDAY: (time(14, 30), time(18, 0)),
     Weekday.WEDNESDAY: (time(9, 0), time(17, 0)),
     Weekday.THURSDAY: (time(9, 0), time(17, 0)),
-    Weekday.SATURDAY: (time(10, 0), time(16, 0)),
+    Weekday.SATURDAY: (time(10, 0), time(14, 0)),
 }
 
 
