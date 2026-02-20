@@ -28,6 +28,13 @@ wheels/
 .env.local
 .env.*.local
 
+# Elastic Beanstalk
+.elasticbeanstalk/
+.ebextensions/*.config
+!.ebextensions/python.config
+*.zip
+deployment_logs.txt
+
 # IDE
 .vscode/
 .idea/
@@ -48,3 +55,7 @@ htmlcov/
 # Database
 *.db
 *.sqlite3
+
+# Poetry (keep poetry.lock for reproducibility)
+# Uncomment if you want to ignore lock file
+# poetry.lock

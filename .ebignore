@@ -1,0 +1,6 @@
+echo "__pycache__/
+*.pyc
+.env
+.git/
+poetry.lock
+pyproject.toml" > .ebignore
