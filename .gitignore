@@ -59,3 +59,5 @@ htmlcov/
 # Poetry (keep poetry.lock for reproducibility)
 # Uncomment if you want to ignore lock file
 # poetry.lock
+
+commands.md
